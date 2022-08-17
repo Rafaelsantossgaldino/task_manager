@@ -18,7 +18,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         format.html { redirect_to tasks_path(@task) }
-        flash.now[:notice] = "Tarefa Criada com sucesso!"
+        flash[:notice] = "Tarefa Criada com sucesso!"
         format.json { render :show, status: :created, location: @task }
       else
         flash.now[:alert] = @task.errors.full_messages.to_sentence
@@ -32,11 +32,11 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to tasks_path(@task) }
-        flash.now[:notice] = "Tarefa atualizada com sucesso!"
+        flash[:notice] = "Tarefa atualizada com sucesso!"
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        flash.now[:alert] = "Não foi possivel atualizar a tarefa!"
+        flash[:alert] = @task.errors.full_messages.to_sentence
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -47,7 +47,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to tasks_url }
-      flash.now[:notice] = "Tarefa excluida com sucesso!"
+      flash[:notice] = "Tarefa excluida com sucesso!"
       format.json { head :no_content }
     end
   end
