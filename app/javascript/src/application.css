@@ -1,1 +1,15 @@
-@import "bootstrap"
+@import "bootstrap";
+
+html, body {
+  height: 100%;
+}
+
+.bg {
+  background-image: url("../../assets/images/logo.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+main {
+  opacity: 0.98;
+}
