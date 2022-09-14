@@ -9,8 +9,7 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
-  def edit
-  end
+  def edit;end
 
   def create
     @task = Task.new(task_params)
@@ -44,12 +43,8 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-
-    respond_to do |format|
-      format.html { redirect_to tasks_url }
-      flash[:notice] = "Tarefa excluida com sucesso!"
-      format.json { head :no_content }
-    end
+    
+    redirect_to tasks_url, notice: 'Tarefa for removida com sucesso'
   end
 
   private
@@ -59,6 +54,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:description, :due_date, :done)
+    params.require(:task).permit(:description, :due_date, :done, :parent_id)
   end
 end
