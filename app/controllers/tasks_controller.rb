@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[edit update destroy ]
+  include Exportable
 
   def index
     @tasks = Task.only_parents.order(:due_date)
@@ -43,7 +44,6 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    
     redirect_to tasks_url, notice: 'Tarefa for removida com sucesso'
   end
 
